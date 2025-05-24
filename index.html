@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MRKT</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="text-center p-0">
+  <img src="mrkt_logo.png" alt="MRKT Logo" width="100"/>
+  <h5 class="mt-0">MRKT - Peer-to-Peer Delivery Marketplace</h5>
+  <h5 class="lead">Connecting buyers and travelers for smart deliveries.</h5>
+  <div class="mt-4">
+    <button id="showBuyer" class="btn btn-primary m-2">I'm a Buyer</button>
+    <button id="showTraveller" class="btn btn-success m-2">I'm a Traveller</button>
+  </div>
+  <div id="buyerForm" class="mt-4" style="display:none;">
+    <h2>Buyer Form</h2>
+    <form id="buyerFormElem" autocomplete="off">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="buyerName" name="name" placeholder="Your Name" required autofocus>
+      </div>
+      <div class="mb-3">
+        <input type="tel" class="form-control" id="buyerPhone" name="phone" placeholder="Phone Number" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="buyerFrom" name="from" placeholder="From Location" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="buyerTo" name="to" placeholder="To Location" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="buyerProduct" name="product" placeholder="What do you want to buy?" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+  </div>
+  <div id="travellerForm" class="mt-4" style="display:none;">
+    <h2>Traveller Form</h2>
+    <form id="travellerFormElem" autocomplete="off">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="travellerFrom" name="from" placeholder="From Location" required autofocus>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="travellerTo" name="to" placeholder="To Location" required>
+      </div>
+      <button type="submit" class="btn btn-success">Show Matching Requests</button>
+    </form>
+    <div id="matches" class="mt-4">
+      <!-- Table will be rendered here by JS -->
+    </div>
+  </div>
+  <script>
+    // Hide both forms on load
+    document.getElementById('buyerForm').style.display = 'none';
+    document.getElementById('travellerForm').style.display = 'none';
+    document.getElementById('showBuyer').onclick = function() {
+      document.getElementById('buyerForm').style.display = 'block';
+      document.getElementById('travellerForm').style.display = 'none';
+      document.getElementById('buyerName').focus();
+    };
+    document.getElementById('showTraveller').onclick = function() {
+      document.getElementById('travellerForm').style.display = 'block';
+      document.getElementById('buyerForm').style.display = 'none';
+      document.getElementById('travellerFrom').focus();
+    };
+  </script>
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
